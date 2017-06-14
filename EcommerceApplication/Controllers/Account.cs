@@ -72,7 +72,17 @@ namespace EcommerceApplication.Controllers
         }
         #endregion
 
-
+        #region Login Settings
+        public IActionResult Login()
+        {
+            return View();
+        }
+        [HttpPost]
+        public async Task<IActionResult> Login()
+        {
+            return View();
+        }
+        #endregion
 
     }
 }
