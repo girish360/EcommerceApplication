@@ -16,7 +16,7 @@ namespace EcommerceApplication.Controllers
         private readonly UserManager<Customer> _userManager;
         private readonly RoleManager<ApplicationRole> _roleManager;
         private readonly SignInManager<Customer> _signInManager;
-        public Account(UserManager<Customer> userManager,RoleManager<ApplicationRole> roleManager, SignInManager<Customer> signManager)
+        public Account(UserManager<Customer> userManager, RoleManager<ApplicationRole> roleManager, SignInManager<Customer> signManager)
         {
             _userManager = userManager;
             _roleManager = roleManager;
@@ -77,7 +77,7 @@ namespace EcommerceApplication.Controllers
         {
             return View();
         }
-        [HttpPost]
+        [HttpPost,ValidateAntiForgeryToken]
         public async Task<IActionResult> Login(LoginVM loginVM)
         {
             if (ModelState.IsValid)
@@ -95,6 +95,18 @@ namespace EcommerceApplication.Controllers
             }
             return View(loginVM);
         }
+
+        #endregion
+
+        #region Logout
+
+        [HttpPost,ValidateAntiForgeryToken]
+        public async Task<IActionResult> Logout()
+        {
+            await _signInManager.SignOutAsync();
+            return RedirectToAction("Login", "Home");
+        }
+
         #endregion
 
     }
