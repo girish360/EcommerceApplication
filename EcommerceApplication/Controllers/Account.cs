@@ -78,9 +78,22 @@ namespace EcommerceApplication.Controllers
             return View();
         }
         [HttpPost]
-        public async Task<IActionResult> Login()
+        public async Task<IActionResult> Login(LoginVM loginVM)
         {
-            return View();
+            if (ModelState.IsValid)
+            {
+                var result = _signInManager.PasswordSignInAsync(
+                    loginVM.Email, loginVM.Password, loginVM.RememberMe, false).Result;
+                if (result.Succeeded)
+                {
+                    return RedirectToAction("Index", "Home");
+                }
+                else
+                {
+                    ModelState.AddModelError("", "Somethings went wrong");
+                }
+            }
+            return View(loginVM);
         }
         #endregion
 
