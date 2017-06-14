@@ -38,7 +38,7 @@ namespace EcommerceApplication.Services.Repository
         public SubCategory GetById(int id)
         {
             return _db.SubCategory.FirstOrDefault(c => c.SubCategoryId == id);
-        }
+        }   
 
         public void Insert(SubCategory subCat)
         {
