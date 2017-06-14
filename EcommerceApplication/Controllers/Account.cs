@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Identity;
 using EcommerceApplication.Models;
+using EcommerceApplication.ViewModels.Account;
 
 // For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -26,6 +27,8 @@ namespace EcommerceApplication.Controllers
             return View();
         }
 
+        #region Register Settings
+
         [HttpGet]
         public IActionResult Register()
         {
@@ -33,10 +36,42 @@ namespace EcommerceApplication.Controllers
         }
 
         [HttpPost]
-        public IActionResult Register()
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Register(RegisterVM registerVM)
         {
-            return View();
+            if (ModelState.IsValid)
+            {
+                var customer = new Customer
+                {
+                    UserName = registerVM.UserName,
+                    Email = registerVM.Email,
+                };
+                var result = await _userManager.CreateAsync(customer, registerVM.Password);
+                if (result.Succeeded)
+                {
+                    if (!_roleManager.RoleExistsAsync("SiteUser").Result)
+                    {
+                        ApplicationRole role = new ApplicationRole();
+                        role.Name = "SiteUser";
+
+                        IdentityResult roleResult = _roleManager.CreateAsync(role).Result;
+
+                        if (!roleResult.Succeeded)
+                        {
+                            ModelState.AddModelError("", "Somethings went wrong !");
+                            return View(registerVM);
+                        }
+                    }
+                    _userManager.AddToRoleAsync(customer, "SiteUser").Wait();
+                    await _signInManager.SignInAsync(customer, isPersistent: false);
+                    return RedirectToAction("Login", "Account");
+
+                }
+            }
+            return View(registerVM);
         }
+        #endregion
+
 
 
     }
