@@ -89,5 +89,10 @@
   <ItemGroup>
     <Folder Include="Areas\Admin\Views\Category\" />
   </ItemGroup>
+  <ItemGroup>
+    <Content Update="wwwroot/images\happy_code_logo.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
 
 </Project>
