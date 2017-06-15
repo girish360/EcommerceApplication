@@ -18,7 +18,7 @@ namespace EcommerceApplication.Models
         }
         //[ScaffoldColumn(false)]
         //public int CustomerId { get; set; }
-        [Required(ErrorMessage ="Customer Name is Required")]
+       // [Required(ErrorMessage ="Customer Name is Required")]
         public string CustomerName { get; set; }
         public string LastName { get; set; }
         public string Address1 { get; set; }

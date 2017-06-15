@@ -8,9 +8,10 @@ using EcommerceApplication.DataContext;
 namespace EcommerceApplication.Migrations
 {
     [DbContext(typeof(MyContext))]
-    partial class MyContextModelSnapshot : ModelSnapshot
+    [Migration("20170615223505_IdentityCore2")]
+    partial class IdentityCore2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
             modelBuilder
                 .HasAnnotation("ProductVersion", "1.1.2")
@@ -93,7 +94,8 @@ namespace EcommerceApplication.Migrations
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken();
 
-                    b.Property<string>("CustomerName");
+                    b.Property<string>("CustomerName")
+                        .IsRequired();
 
                     b.Property<DateTime?>("DateEntered");
 

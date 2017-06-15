@@ -41,11 +41,7 @@ namespace EcommerceApplication.Controllers
         {
             if (ModelState.IsValid)
             {
-                var customer = new Customer
-                {
-                    UserName = registerVM.UserName,
-                    Email = registerVM.Email,
-                };
+                var customer = new Customer { UserName = registerVM.Email, Email = registerVM.Email };
                 var result = await _userManager.CreateAsync(customer, registerVM.Password);
                 if (result.Succeeded)
                 {
