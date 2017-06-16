@@ -23,5 +23,23 @@ namespace EcommerceApplication.Areas.Admin.Controllers
             var categories = _categoryRepository.GetAll();
             return View(categories);
         }
+
+        [HttpGet]
+        public IActionResult Create()
+        {
+            return View();
+        }
+
+        [HttpPost,ValidateAntiForgeryToken]
+        public IActionResult Create(Models.Category category)
+        {
+            if (ModelState.IsValid)
+            {
+                return View();
+            }
+            _categoryRepository.Insert(category);
+            _categoryRepository.Save();
+            return RedirectToAction("Index");
+        }
     }
 }
