@@ -1,10 +1,8 @@
-﻿using EcommerceApplication.Services.Infastracture;
-using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using EcommerceApplication.Models;
 using EcommerceApplication.DataContext;
+using EcommerceApplication.Services.Infrastructure;
 
 namespace EcommerceApplication.Services.Repository
 {

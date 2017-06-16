@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace EcommerceApplication.Services.Infastracture
+namespace EcommerceApplication.Services.Infrastructure
 {
    public interface IProduct
     {
