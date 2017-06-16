@@ -19,7 +19,8 @@ namespace EcommerceApplication.Areas.Admin.Controllers
         // GET: /<controller>/
         public IActionResult Index()
         {
-            return View();
+            var categories = _categoryRepository.GetAll();
+            return View(categories);
         }
     }
 }
