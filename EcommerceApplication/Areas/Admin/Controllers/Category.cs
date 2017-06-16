@@ -9,6 +9,7 @@ using EcommerceApplication.Services.Infrastructure;
 
 namespace EcommerceApplication.Areas.Admin.Controllers
 {
+    [Area("Admin")]
     public class Category : Controller
     {
         private readonly ICategory _categoryRepository;

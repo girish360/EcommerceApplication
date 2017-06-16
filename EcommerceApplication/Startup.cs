@@ -73,9 +73,15 @@ namespace EcommerceApplication
                     template: "{controller=Home}/{action=Index}/{id?}");
 
                 //Admin Area Route
+
+                //Admin Area route
                 routes.MapRoute(
-                    name: "AdminAreaRoute",
+                    name: "AdminAreaProduct",
                     template: "{area:exists}/{controller=Products}/{action=Index}/{id?}");
+
+                routes.MapRoute(
+                    name: "AdminAreaCategory",
+                    template: "{area:exists}/{controller=Category}/{action=Index}/{id?}");
             });
         }
     }
