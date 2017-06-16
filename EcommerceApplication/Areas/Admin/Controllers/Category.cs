@@ -10,6 +10,7 @@ using EcommerceApplication.Services.Infrastructure;
 namespace EcommerceApplication.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    [Route("[area]/[controller]/[action]")]
     public class Category : Controller
     {
         private readonly ICategory _categoryRepository;
@@ -33,7 +34,7 @@ namespace EcommerceApplication.Areas.Admin.Controllers
         [HttpPost,ValidateAntiForgeryToken]
         public IActionResult Create(Models.Category category)
         {
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
                 return View();
             }

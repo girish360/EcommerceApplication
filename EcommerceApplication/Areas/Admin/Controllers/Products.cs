@@ -12,6 +12,7 @@ using EcommerceApplication.Models;
 namespace EcommerceApplication.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    [Route("[area]/[controller]/[action]")]
     public class Products : Controller
     {
         private readonly IProduct _productRepository;

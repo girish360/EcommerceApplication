@@ -30,6 +30,7 @@ namespace EcommerceApplication
         {
             // Add framework services.
             services.AddMvc();
+            services.AddRouting();
             services.AddDbContext<MyContext>(options =>
             options.UseSqlServer(Configuration["ConnectionStrings:DefaultConnection"]));
 
@@ -72,7 +73,6 @@ namespace EcommerceApplication
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
 
-                //Admin Area Route
 
                 //Admin Area route
                 routes.MapRoute(
